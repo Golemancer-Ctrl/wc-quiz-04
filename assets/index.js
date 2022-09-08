@@ -1,16 +1,20 @@
-const button = document.getElementById('button');
+const button = document.getElementsByTagName('button');
+let time = document.getElementById('time');
+let seconds = 75;
 
-function start() {
-    function countdown(count) {
-        let count = document.getElementById('time').textContent;
-        JSON.parse(count);
-        count--;
-        if (count === 0) {
-            return;
-        }
+function countdown() {
+    seconds--;
+    time.innerText = seconds;
+
+    if (seconds === 0) {
+        clearInterval(counter);
     }
-
-    setInterval(countdown(75), 1000);
 }
 
-button.addEventListener('click', start);
+document.getElementsByName('button').addEventListener('click', start);
+
+function start() {
+    countdown;
+}
+
+const counter = setInterval(countdown, 1000);
