@@ -7,4 +7,6 @@
 ## Installation
 
 ## Credits
-- https://meyerweb.com/eric/tools/css/reset/ provided me with the reset.css file code used in this project
+- https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+- https://www.w3schools.com/css/css3_borders.asp
+- https://www.w3schools.com/js/js_htmldom_eventlistener.asp
