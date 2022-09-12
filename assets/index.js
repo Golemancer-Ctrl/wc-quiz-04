@@ -8,13 +8,17 @@ let seconds = 75;
 
 listItem.style.display = "none";
 
+while (qTracker < 1) {}
+
 function qTracker(){
     let clicks = 0;
     if (startBtn.addEventListener('click')) clicks++;
+    console.log(clicks);
     for (x = 0; x < listItem.length; x++) {
         if (listItem[x].addEventListener('click')) clicks++;
+        console.log(clicks);
     }
-
+    return clicks;
 }
 
 function start() {
