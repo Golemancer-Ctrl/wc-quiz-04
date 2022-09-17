@@ -1,7 +1,9 @@
 /* elements */
-* {
+body {
+    --slateGray: #97a7a7;
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--slateGray);
 }
 
 h2 {
@@ -11,7 +13,7 @@ h2 {
 ol li {
     border: 2px solid black;
     box-shadow: 5px 5px 5px gray;
-    background-color: midnightblue;
+    background-color: royalblue;
     color: white;
     block-size: fit-content;
     max-width: max-content;
@@ -19,6 +21,14 @@ ol li {
     border-radius: 25px;
     padding: 10px;
 }
+
+    ol li:hover {
+        opacity: 80%;
+    }
+
+    ol li:active {
+        background-color: midnightblue;
+    }
 
 header {
     display: flex;
