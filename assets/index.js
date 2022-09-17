@@ -11,7 +11,7 @@ let twoAnswers = ["A place to store a block of code for reuse", "A place to stor
 let threeAnswers = ["To create a new line of code", "To move back through the code to another section", "To restore a previous version of the code", "To end a function and return a specific value"];
 let fourAnswers = ["American Programming Institute", "Application Programming Interface", "Automatic Programming Integer", "Annual Prime Interest"];
 let fiveAnswers = ["Event Propogation", "The behavior and study of sea turtles", "Object Interaction", "Document Progression"];
-let sixAnswers = ["Too many", "Not enough", "One", "Answers Two and Three"]
+let sixAnswers = ["Too many", "Not enough", "One", "Answers Two and Three"];
 
 for (let x = 0; x < choice.length; x++) {
     choice[x].style.display = "none";
@@ -21,10 +21,13 @@ function start() {
     const counter = setInterval(countdown, 1000);
     startBtn.style.display = "none";
 
+    quizDisplay(tracker);
+
     for (let x = 0; x < choice.length; x++) {
         choice[x].style.display = "block"
         choice[x].onclick = function() {
             tracker += 1;
+            quizDisplay(tracker);
             console.log (tracker);
         }
     }
@@ -35,6 +38,12 @@ function start() {
         if (seconds === 0) clearInterval(counter);
     }
 
+    function quizDisplay () {
+        for(let x = 0; x < choice.length; x++) {
+            let answerArray = [oneAnswers[x], twoAnswers[x], threeAnswers[x], fourAnswers[x], fiveAnswers[x], sixAnswers[x]];
+            choice[x].innerText = answerArray[tracker];
+        }
+    }
 }
 
 startBtn.onclick = start;
