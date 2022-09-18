@@ -2,6 +2,8 @@ const startBtn = document.getElementsByTagName('button')[0];
 let time = document.getElementById('time');
 let question = document.getElementById('question');
 let choice = document.getElementsByClassName('choice');
+let scoreboard = document.getElementById('scoreboard');
+let score = 0;
 let tracker = 0;
 let seconds = 90;
 
@@ -34,14 +36,16 @@ function start() {
             tracker += 1;
             question.innerText = questionArray[tracker];
             quizDisplay(tracker);
-            console.log (tracker);
+            scoreKeeper(tracker);
+            if (tracker > questionArray.length) gameOver();
+            console.log(tracker);
         }
     }
 
     //sets the countdown in the top right and initializes it
     function countdown() {
         seconds--;
-        time.innerText = "Time Remaining:" + seconds;
+        time.innerText = " Remaining: " + seconds;
         if (seconds === 0) clearInterval(counter);
     }
 
@@ -53,8 +57,16 @@ function start() {
         }
     }
 
-    function scoreKeeper (playerChoice) {
+    //keeps score and saves it to the local storage
+    function scoreKeeper (event) {
         let answerKey = [oneAnswers[2], twoAnswers[2], threeAnswers[3], fourAnswers[1], fiveAnswers[0], sixAnswers[3]];
+        selection = event.target.innerText;
+        
+        if(selection !== answerKey[tracker]) {
+            seconds -= 15;
+        } else if (selection === answerKey[tracker]) {
+            score += 10;
+        }
     }
     
     //clears the quiz display and changes the screen to the game over screen
@@ -65,14 +77,14 @@ function start() {
 
         score.style.display = "none";
 
-        question.innerText = "Game Over!  Thanks for playing!"
+        question.innerText = "Game Over!  Thanks for playing!";
 
-
+        scoreboard.innerText = "Score: " + score + " Time Remaining: " + seconds;
 
     }
 
     // evaluations checking that the game is still running
-    if (tracker > questionArray.length) gameOver;
+    
     if (seconds === 0) gameOver;
 
 }
