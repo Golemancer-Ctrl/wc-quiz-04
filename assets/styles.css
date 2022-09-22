@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-    color: white;
+    color: black;
 }
 
 h2 {
@@ -27,7 +27,7 @@ ol li {
 }
 
     ol li:hover {
-        opacity: 80%;
+        background-color: blue;
     }
 
     ol li:active {
@@ -60,7 +60,7 @@ button {
 }
 
     button:hover {
-        opacity: 80%;
+        background-color: blue;
     }
 
     button:active {

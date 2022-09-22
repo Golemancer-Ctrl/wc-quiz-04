@@ -5,7 +5,7 @@ let choice = document.getElementsByClassName('choice');
 let scoreboard = document.getElementById('scoreboard');
 let score = 0;
 let tracker = 0;
-let seconds = 90;
+let seconds = 75;
 
 //arrays containing the questions and choices
 let questionArray = ["What type of loop is used to evaluate an expression?", "What is an object?", "When should a return be used?", "What does API stand for?", "What is bubbling/capturing an example of?", "How many programmers does it take to make a quiz?"];
@@ -20,8 +20,46 @@ for (let x = 0; x < choice.length; x++) {
     choice[x].style.display = "none";
 }
 
+//sets the question and choices to the relevant stage of the quiz
+function quizDisplay () {
+    for(let x = 0; x < choice.length; x++) {
+        let answerArray = [oneAnswers[x], twoAnswers[x], threeAnswers[x], fourAnswers[x], fiveAnswers[x], sixAnswers[x]];
+        choice[x].innerText = answerArray[tracker];
+    }
+}
+
+//keeps score and saves it to the local storage
+function scoreKeeper (event) {
+    let answerKey = [oneAnswers[2], twoAnswers[2], threeAnswers[3], fourAnswers[1], fiveAnswers[0], sixAnswers[3]];
+    selection = event.target.getAttribute("data-choice");
+    
+    if(selection !== answerKey[tracker]) {
+        seconds -= 15;
+    } else if (selection === answerKey[tracker]) {
+        score += 10;
+    }
+}
+
+//clears the quiz display and changes the screen to the game over screen
+function gameOver () {
+    for (let x = 0; x < choice.length; x++) {
+        choice[x].style.display = "none";
+    }
+
+    scoreboard.style.display = "block";
+
+    question.innerText = "Game Over! Thanks for playing!";
+
+    scoreboard.innerText = "Score: " + score + " Time Remaining: " + seconds;
+
+}
+
+function highScore() {
+
+}
+
 //initializes the quiz
-function start() {
+startBtn.onclick = function () {
     const counter = setInterval(countdown, 1000);
     startBtn.style.display = "none";
 
@@ -33,11 +71,17 @@ function start() {
     for (let x = 0; x < choice.length; x++) {
         choice[x].style.display = "block"
         choice[x].onclick = function() {
+            console.log(tracker, questionArray.length-1)
             tracker += 1;
-            question.innerText = questionArray[tracker];
-            quizDisplay(tracker);
-            scoreKeeper(tracker);
-            if (tracker > questionArray.length) gameOver();
+            if(tracker == questionArray.length){
+                gameOver();
+            } else{
+                question.innerText = questionArray[tracker];
+                quizDisplay(tracker);
+                scoreKeeper(tracker);
+               // if (tracker == questionArray.length - 1) gameOver();
+            }
+        //    if()
             console.log(tracker);
         }
     }
@@ -46,47 +90,15 @@ function start() {
     function countdown() {
         seconds--;
         time.innerText = " Remaining: " + seconds;
-        if (seconds === 0) clearInterval(counter);
-    }
+       // if (seconds === 0) 
+       console.log(tracker, questionArray.length)
 
-    //sets the question and choices to the relevant stage of the quiz
-    function quizDisplay () {
-        for(let x = 0; x < choice.length; x++) {
-            let answerArray = [oneAnswers[x], twoAnswers[x], threeAnswers[x], fourAnswers[x], fiveAnswers[x], sixAnswers[x]];
-            choice[x].innerText = answerArray[tracker];
-        }
-    }
-
-    //keeps score and saves it to the local storage
-    function scoreKeeper (event) {
-        let answerKey = [oneAnswers[2], twoAnswers[2], threeAnswers[3], fourAnswers[1], fiveAnswers[0], sixAnswers[3]];
-        selection = event.target.innerText;
-        
-        if(selection !== answerKey[tracker]) {
-            seconds -= 15;
-        } else if (selection === answerKey[tracker]) {
-            score += 10;
-        }
+        if (seconds <= 0) {
+            console.log('ENDING')
+            clearInterval(counter);
+            gameOver();
+        } 
+        //if (tracker > 6) gameOver();
     }
     
-    //clears the quiz display and changes the screen to the game over screen
-    function gameOver () {
-        for (let x = 0; x < choice.length; x++) {
-            choice[x].style.display = "none";
-        }
-
-        score.style.display = "none";
-
-        question.innerText = "Game Over!  Thanks for playing!";
-
-        scoreboard.innerText = "Score: " + score + " Time Remaining: " + seconds;
-
-    }
-
-    // evaluations checking that the game is still running
-    
-    if (seconds === 0) gameOver;
-
 }
-
-startBtn.onclick = start;
