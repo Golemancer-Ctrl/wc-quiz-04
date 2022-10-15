@@ -75,10 +75,10 @@ startBtn.onclick = function () {
             tracker += 1;
             if(tracker == questionArray.length){
                 gameOver();
-            } else{
+            } else {
                 question.innerText = questionArray[tracker];
                 quizDisplay(tracker);
-                scoreKeeper(tracker);
+                scoreKeeper(this.onclick);
                // if (tracker == questionArray.length - 1) gameOver();
             }
         //    if()
