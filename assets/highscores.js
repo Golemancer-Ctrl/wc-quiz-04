@@ -8,4 +8,8 @@ window.onload = () => {
     timeArr = timeArr + localStorage.getItem("time");
 
     console.log(nameArr);
+
+    localStorage.setItem("nameArr", JSON.stringify(nameArr));
+    localStorage.setItem("scoreArr", JSON.stringify(scoreArr));
+    localStorage.setItem("timeArr", JSON.stringify(timeArr));
 }

@@ -22,9 +22,9 @@ The lessons I have learned in the making of this project will carry with me for 
 
 ## Usage
 
-The live site can be reached at [insert hyperlink here].
+The live site can be reached at [https://golemancer-ctrl.github.io/wc-quiz-04/].
 
-[insert screenshot of deployed page here].
+![Quiz question one, fullscreen.](./assets/img/golemancer-ctrl.github.io_wc-quiz-04_.png)
 
 ## Credits
 - MDN Web Docs
